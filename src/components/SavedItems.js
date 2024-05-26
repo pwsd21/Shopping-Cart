@@ -1,7 +1,7 @@
 import React from "react";
 
 const SavedItems = () => {
-  return <div>SavedItems</div>;
+  return <div></div>;
 };
 
 export default SavedItems;

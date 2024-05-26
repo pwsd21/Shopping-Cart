@@ -15,9 +15,14 @@ const Header = () => {
     dispatch(setSearchQuery(e.target.value));
   };
 
+  const handleHome = () => {
+    dispatch(setSearchQuery(""));
+    navigate("/");
+  };
+
   return (
     <div className="flex flex-wrap justify-evenly p-2 m-2">
-      <div role="button" onClick={() => navigate("/")}>
+      <div role="button" onClick={handleHome}>
         <p className="text-blue-700 text-3xl font-bold ">Flipkart</p>
         <p className="text-gray-400 font-semibold">
           Explore <span className="text-yellow-600">Plus➕</span>

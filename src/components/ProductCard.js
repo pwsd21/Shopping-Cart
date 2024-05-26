@@ -40,7 +40,7 @@ const ProductCard = ({ product }) => {
         <p>Ratings: ⭐ {product.rating}</p>
         <p className="pt-10">
           <button className="text-pink-600 mr-10" onClick={handleSave}>
-            🩷Save
+            {!savedItems.includes(product) ? "🩷Save" : "Saved"}
           </button>
           <button className="text-green-600" onClick={handleAddCart}>
             🛒Add to Cart
