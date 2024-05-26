@@ -6,7 +6,7 @@ export const fetchCategories = createAsyncThunk(
   async () => {
     const res = await fetch("https://dummyjson.com/products");
     const data = await res.json();
-    return data.products.map((product) => product.category);
+    return data;
   }
 );
 
@@ -16,6 +16,7 @@ const categoriesSlice = createSlice({
   name: "categpries",
   initialState: {
     categories: [],
+    products: [],
     status: "idle",
     error: null,
   },
@@ -27,7 +28,12 @@ const categoriesSlice = createSlice({
       })
       .addCase(fetchCategories.fulfilled, (state, action) => {
         state.status = "succeeded";
-        state.categories = [...new Set(action.payload)];
+        state.categories = [
+          ...new Set(
+            action.payload.products.map((product) => product.category)
+          ),
+        ];
+        state.products = [...action.payload.products];
       })
       .addCase(fetchCategories.rejected, (state, action) => {
         state.status = "failed";

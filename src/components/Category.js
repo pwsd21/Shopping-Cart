@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../features/categories/categorySlice";
 import CategoryCard from "./CategoryCard";
+import { Route, Routes } from "react-router-dom";
+import ProductList from "./ProductList";
 
 const Category = () => {
   const dispatch = useDispatch();
@@ -23,13 +25,19 @@ const Category = () => {
     return <div>Error: {error}</div>;
   }
   return (
-    <div>
-      <div className="flex justify-evenly border border-gray-400 p-8 m-5 bg-gray-50">
+    <div className="flex flex-col">
+      <div className="flex flex-wrap justify-evenly border border-gray-400 p-3 m-5 bg-gray-50">
         {categories?.map((category) => (
-          <div key={category.id}>
+          <div key={category}>
             <CategoryCard category={category} />
           </div>
         ))}
+      </div>
+
+      <div className="flex justify-evenly flex-wrap ml-3 mr-3">
+        <Routes>
+          <Route path="/" element={<ProductList />} />
+        </Routes>
       </div>
     </div>
   );
